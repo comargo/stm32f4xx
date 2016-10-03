@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8)
-set(CMAKE_TOOLCHAIN_FILE arm-none-eabi.cmake)
+set(CMAKE_TOOLCHAIN_FILE cmake/arm-none-eabi.cmake)
 project(STM32F4xx_HAL)
 
 add_subdirectory(Drivers)
