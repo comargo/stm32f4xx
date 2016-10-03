@@ -1,78 +1,55 @@
 cmake_minimum_required(VERSION 2.8)
 project(stm32f4xx_hal)
-add_library(stm32f4xx_hal STATIC
-	Src/stm32f4xx_hal_adc.c
-	Src/stm32f4xx_hal_adc_ex.c
-	Src/stm32f4xx_hal.c
-	Src/stm32f4xx_hal_can.c
-	Src/stm32f4xx_hal_cec.c
-	Src/stm32f4xx_hal_cortex.c
-	Src/stm32f4xx_hal_crc.c
-	Src/stm32f4xx_hal_cryp.c
-	Src/stm32f4xx_hal_cryp_ex.c
-	Src/stm32f4xx_hal_dac.c
-	Src/stm32f4xx_hal_dac_ex.c
-	Src/stm32f4xx_hal_dcmi.c
-	Src/stm32f4xx_hal_dcmi_ex.c
-	Src/stm32f4xx_hal_dfsdm.c
-	Src/stm32f4xx_hal_dma2d.c
-	Src/stm32f4xx_hal_dma.c
-	Src/stm32f4xx_hal_dma_ex.c
-	Src/stm32f4xx_hal_dsi.c
-	Src/stm32f4xx_hal_eth.c
-	Src/stm32f4xx_hal_flash.c
-	Src/stm32f4xx_hal_flash_ex.c
-	Src/stm32f4xx_hal_flash_ramfunc.c
-	Src/stm32f4xx_hal_fmpi2c.c
-	Src/stm32f4xx_hal_fmpi2c_ex.c
-	Src/stm32f4xx_hal_gpio.c
-	Src/stm32f4xx_hal_hash.c
-	Src/stm32f4xx_hal_hash_ex.c
-	Src/stm32f4xx_hal_hcd.c
-	Src/stm32f4xx_hal_i2c.c
-	Src/stm32f4xx_hal_i2c_ex.c
-	Src/stm32f4xx_hal_i2s.c
-	Src/stm32f4xx_hal_i2s_ex.c
-	Src/stm32f4xx_hal_irda.c
-	Src/stm32f4xx_hal_iwdg.c
-	Src/stm32f4xx_hal_lptim.c
-	Src/stm32f4xx_hal_ltdc.c
-	Src/stm32f4xx_hal_ltdc_ex.c
-	Src/stm32f4xx_hal_nand.c
-	Src/stm32f4xx_hal_nor.c
-	Src/stm32f4xx_hal_pccard.c
-	Src/stm32f4xx_hal_pcd.c
-	Src/stm32f4xx_hal_pcd_ex.c
-	Src/stm32f4xx_hal_pwr.c
-	Src/stm32f4xx_hal_pwr_ex.c
-	Src/stm32f4xx_hal_qspi.c
-	Src/stm32f4xx_hal_rcc.c
-	Src/stm32f4xx_hal_rcc_ex.c
-	Src/stm32f4xx_hal_rng.c
-	Src/stm32f4xx_hal_rtc.c
-	Src/stm32f4xx_hal_rtc_ex.c
-	Src/stm32f4xx_hal_sai.c
-	Src/stm32f4xx_hal_sai_ex.c
-	Src/stm32f4xx_hal_sd.c
-	Src/stm32f4xx_hal_sdram.c
-	Src/stm32f4xx_hal_smartcard.c
-	Src/stm32f4xx_hal_spdifrx.c
-	Src/stm32f4xx_hal_spi.c
-	Src/stm32f4xx_hal_sram.c
-	Src/stm32f4xx_hal_tim.c
-	Src/stm32f4xx_hal_tim_ex.c
-	Src/stm32f4xx_hal_uart.c
-	Src/stm32f4xx_hal_usart.c
-	Src/stm32f4xx_hal_wwdg.c
-	Src/stm32f4xx_ll_fmc.c
-	Src/stm32f4xx_ll_fsmc.c
-	Src/stm32f4xx_ll_sdmmc.c
-	Src/stm32f4xx_ll_usb.c
-	)
+include(Sources.cmake)
+add_library(stm32f4xx_hal STATIC ${stm32f4xx_hal_sources})
+target_link_libraries(stm32f4xx_hal cmsis)
 target_include_directories(stm32f4xx_hal PUBLIC 
 	${CMAKE_CURRENT_SOURCE_DIR}/Inc 
 	${PROJECT_BINARY_DIR}/Inc 
-	${CMAKE_CURRENT_SOURCE_DIR}/../CMSIS/Device/ST/STM32F4xx/Include
-	${CMAKE_CURRENT_SOURCE_DIR}/../CMSIS/Include
 )
+option(HAL_MODULE_ENABLED "Enable HAL module" ON)
+option(HAL_ADC_MODULE_ENABLED "Enable ADC module" ON)
+option(HAL_CAN_MODULE_ENABLED "Enable CAN module" ON)
+option(HAL_CRC_MODULE_ENABLED "Enable CRC module" ON)
+option(HAL_CEC_MODULE_ENABLED "Enable CEC module" ON)
+option(HAL_CRYP_MODULE_ENABLED "Enable CRYP module" ON)
+option(HAL_DAC_MODULE_ENABLED "Enable DAC module" ON)
+option(HAL_DCMI_MODULE_ENABLED "Enable DCMI module" ON)
+option(HAL_DMA_MODULE_ENABLED "Enable DMA module" ON)
+option(HAL_DMA2D_MODULE_ENABLED "Enable DMA2D module" ON)
+option(HAL_ETH_MODULE_ENABLED "Enable ETH module" ON)
+option(HAL_FLASH_MODULE_ENABLED "Enable FLASH module" ON)
+option(HAL_NAND_MODULE_ENABLED "Enable NAND module" ON)
+option(HAL_NOR_MODULE_ENABLED "Enable NOR module" ON)
+option(HAL_PCCARD_MODULE_ENABLED "Enable PCCARD module" ON)
+option(HAL_SRAM_MODULE_ENABLED "Enable SRAM module" ON)
+option(HAL_SDRAM_MODULE_ENABLED "Enable SDRAM module" ON)
+option(HAL_HASH_MODULE_ENABLED "Enable HASH module" ON)
+option(HAL_GPIO_MODULE_ENABLED "Enable GPIO module" ON)
+option(HAL_I2C_MODULE_ENABLED "Enable I2C module" ON)
+option(HAL_I2S_MODULE_ENABLED "Enable I2S module" ON)
+option(HAL_IWDG_MODULE_ENABLED "Enable IWDG module" ON)
+option(HAL_LTDC_MODULE_ENABLED "Enable LTDC module" ON)
+option(HAL_DSI_MODULE_ENABLED "Enable DSI module" ON)
+option(HAL_PWR_MODULE_ENABLED "Enable PWR module" ON)
+option(HAL_QSPI_MODULE_ENABLED "Enable QSPI module" ON)
+option(HAL_RCC_MODULE_ENABLED "Enable RCC module" ON)
+option(HAL_RNG_MODULE_ENABLED "Enable RNG module" ON)
+option(HAL_RTC_MODULE_ENABLED "Enable RTC module" ON)
+option(HAL_SAI_MODULE_ENABLED "Enable SAI module" ON)
+option(HAL_SD_MODULE_ENABLED "Enable SD module" ON)
+option(HAL_SPI_MODULE_ENABLED "Enable SPI module" ON)
+option(HAL_TIM_MODULE_ENABLED "Enable TIM module" ON)
+option(HAL_UART_MODULE_ENABLED "Enable UART module" ON)
+option(HAL_USART_MODULE_ENABLED "Enable USART module" ON)
+option(HAL_IRDA_MODULE_ENABLED "Enable IRDA module" ON)
+option(HAL_SMARTCARD_MODULE_ENABLED "Enable SMARTCARD module" ON)
+option(HAL_WWDG_MODULE_ENABLED "Enable WWDG module" ON)
+option(HAL_CORTEX_MODULE_ENABLED "Enable CORTEX module" ON)
+option(HAL_PCD_MODULE_ENABLED "Enable PCD module" ON)
+option(HAL_HCD_MODULE_ENABLED "Enable HCD module" ON)
+option(HAL_FMPI2C_MODULE_ENABLED "Enable FMPI2C module" ON)
+option(HAL_SPDIFRX_MODULE_ENABLED "Enable SPDIFRX module" ON)
+option(HAL_DFSDM_MODULE_ENABLED "Enable DFSDM module" ON)
+option(HAL_LPTIM_MODULE_ENABLED "Enable LPTIM module" ON)
 configure_file(${PROJECT_SOURCE_DIR}/Inc/stm32f4xx_hal_conf_template.h ${PROJECT_BINARY_DIR}/Inc/stm32f4xx_hal_conf.h)

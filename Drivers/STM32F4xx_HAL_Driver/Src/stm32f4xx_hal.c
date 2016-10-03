@@ -62,6 +62,8 @@
   * @{
   */
 
+#ifdef HAL_MODULE_ENABLED
+
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
 /** @addtogroup HAL_Private_Constants
@@ -521,6 +523,7 @@ void HAL_DisableMemorySwappingBank(void)
   * @}
   */
 
+#endif /* HAL_MODULE_ENABLED */
 /**
   * @}
   */

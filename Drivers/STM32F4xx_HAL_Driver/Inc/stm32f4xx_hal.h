@@ -182,6 +182,7 @@
   * @}
   */
 
+#ifdef HAL_MODULE_ENABLED
 /* Exported functions --------------------------------------------------------*/
 /** @addtogroup HAL_Exported_Functions
   * @{
@@ -231,6 +232,7 @@ void HAL_DisableMemorySwappingBank(void);
 /**
   * @}
   */
+#endif /* HAL_MODULE_ENABLED */
 /* Private types -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
 /** @defgroup HAL_Private_Variables HAL Private Variables
