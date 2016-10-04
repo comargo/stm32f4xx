@@ -14,7 +14,20 @@ endif()
 
 cmake_force_c_compiler(arm-none-eabi-gcc GNU)
 cmake_force_cxx_compiler(arm-none-eabi-g++ GNU)
-add_compile_options(-mlittle-endian -mthumb -nostartfiles -mcpu=cortex-m4 -fsingle-precision-constant -Wdouble-promotion ${FLOAT_FLAGS})
-string(REPLACE ";" " " FLOAT_FLAGS_STR "${FLOAT_FLAGS}")
-set(CMAKE_C_LINK_FLAGS "-mcpu=cortex-m4 -mthumb -mthumb-interwork -mlittle-endian ${FLOAT_FLAGS_STR} -T${CMAKE_CURRENT_LIST_DIR}/../stm32f4xx.ld")
+
+set(arm_compile_link_options
+    -mcpu=cortex-m4
+    -mthumb
+    -mthumb-interwork
+    -mlittle-endian
+    -fsingle-precision-constant
+    -Wdouble-promotion
+    ${FLOAT_FLAGS}
+    "-T${CMAKE_CURRENT_LIST_DIR}/stm32f4xx.ld"
+     -specs=nosys.specs
+)
+add_compile_options(${arm_compile_link_options})
+
+string(REPLACE ";" " " CMAKE_C_LINK_FLAGS "${arm_compile_link_options}")
+
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_CURRENT_LIST_DIR})
